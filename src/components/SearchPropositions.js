@@ -14,7 +14,6 @@ export default function SearchPropositions({ propositions, onPropositionClick })
         <Proposition
           key={`proposition-${proposition.id.videoId}`}
           onClick={() => {
-            console.log("coucou");
             onPropositionClick(
               proposition.id.videoId,
               proposition.snippet.title);

@@ -6,12 +6,11 @@ const propTypes = {
 
 export default function Audio({ currentTrack }) {
   if (!currentTrack) return <div>no zik</div>;
-  console.log(currentTrack);
+
   return (
     <div>
       <h2>{currentTrack.title}</h2>
-      <audio controls src={currentTrack.url}>
-        <source src={currentTrack.url} type="audio/ogg" />
+      <audio autoPlay="autoplay" controls="controls" src={currentTrack.url}>
       </audio>
     </div>
   );

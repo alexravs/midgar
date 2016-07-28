@@ -9,11 +9,8 @@ function mapStateToProps(state) {
     isFetching: false,
     searchQuery: '',
     items: state.searchResult.items,
-    // items: [
-    //   {snippet: { title: 'Mura Masa - Firefly' } },
-    //   {snippet: { title: 'Daft Punk - One More Time'} }
-    // ],
   }
+
   return {
     resultPropositions: fakeSearchResult,
     searchQuery: state.searchQuery,
@@ -27,9 +24,10 @@ export class Youtube extends React.Component {
   }
 
   handlePropositionClick(videoId, title) {
-    console.log("handling");
     const { dispatch } = this.props;
-    dispatch(fetchYoutubeMp3(videoId, title));
+    // dispatch(fetchYoutubeMp3(videoId, title));
+    dispatch(setTrack(title, ('http://www.youtubeinmp3.com/fetch/?video=https://www.youtube.com/watch?v=' + videoId)));
+
   }
 
   render() {
