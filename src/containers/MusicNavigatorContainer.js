@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { previousTrack, nextTrack } from '../actions/index.js';
+import { changeTrack } from '../actions/index.js';
 import MusicNavigator from '../components/MusicNavigator';
 
 const mapStateToProps = (state) => {
@@ -11,10 +11,10 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     onPreviousTrackClick: () => {
-      dispatch(previousTrack())
+      dispatch(changeTrack(-1))
     },
     onNextTrackClick: () => {
-      dispatch(nextTrack())
+      dispatch(changeTrack(1))
     },
   }
 }

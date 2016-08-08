@@ -8,7 +8,8 @@ export default function Playlist({ playlist, onTrackClick }) {
       <Track
         key={`track-${music.id}`}
         onClick={() => {
-          onTrackClick(music.id);
+          const { id, title, url } = music;
+          onTrackClick(id, title, url);
         }}
         title={music.title}/>
       )}

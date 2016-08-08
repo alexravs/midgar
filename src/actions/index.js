@@ -46,36 +46,25 @@ export const setTrack = (title, url) => {
 }
 
 export function fetchPlaylist() {
-
   return function(dispatch) {
     dispatch(requestPlaylist());
     return music.fetchPlaylist()
       .then(playlist => {
-        console.log(playlist);
-        // dispatch(setTrackId(playlist[0].id));
-        // playlist
-        const { title, url } = playlist[0];
-        console.log(title);
-        console.log(url);
+        const { title, url, id } = playlist[0];
+        dispatch(setTrackId(id));
         dispatch(setTrack(title, url));
         return dispatch(receivePlaylist(playlist));
       });
   };
 }
 
-export const previousTrack = (id) => {
+export const changeTrack = (change) => {
     return (dispatch, getState) => {
         const { playlist, currentTrackIndex } = getState();
-        const indexOfId = playlist.items.indexOf(playlist.items.filter((music) => music.id === currentTrackIndex)[0])
-        return dispatch(setTrackId(playlist.items[indexOfId - 1].id));
-    }
-}
-
-export const nextTrack = () => {
-    return (dispatch, getState) => {
-        const { playlist, currentTrackIndex } = getState();
-        const indexOfId = playlist.items.indexOf(playlist.items.filter((music) => music.id === currentTrackIndex)[0])
-        return dispatch(setTrackId(playlist.items[indexOfId + 1].id));
+        const indexOfId = music.getIdByIndex(playlist, currentTrackIndex);
+        const { id, title, url } = playlist.items[indexOfId + change];
+        dispatch(setTrackId(id));
+        return dispatch(setTrack(title, url));
     }
 }
 

@@ -8,9 +8,15 @@ function fetchSearchResult(query) {
   return axios.get(`https://www.googleapis.com/youtube/v3/search?part=snippet&q=${query}&type=video&key=AIzaSyCsJoNlImYu5VRmULJToPdzIJjzdKHEKVI`).then((response) => response.data);
 }
 
+function getIdByIndex(playlist, currentTrackId) {
+  return playlist.items.indexOf(
+    playlist.items.filter((music) => music.id === currentTrackId)[0])
+}
+
 const music = {
   fetchPlaylist,
-  fetchSearchResult
+  fetchSearchResult,
+  getIdByIndex
 }
 
 export default music;

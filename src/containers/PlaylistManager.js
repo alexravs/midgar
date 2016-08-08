@@ -1,7 +1,7 @@
 import React from 'react';
 import Playlist from '../components/Playlist';
 import { connect } from 'react-redux';
-import { fetchPlaylist, setTrackId } from '../actions/index';
+import { fetchPlaylist, setTrack, setTrackId } from '../actions/index';
 
 class PlaylistManager extends React.Component {
   constructor(props) {
@@ -14,9 +14,10 @@ class PlaylistManager extends React.Component {
     dispatch(fetchPlaylist());
   }
 
-  handleTrackClick(id) {
+  handleTrackClick(id, title, url) {
     const { dispatch } = this.props;
     dispatch(setTrackId(id));
+    dispatch(setTrack(title, url));
   }
 
   render() {

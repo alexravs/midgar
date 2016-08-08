@@ -5,8 +5,8 @@ export default function MusicNavigator({ onPreviousTrackClick, onNextTrackClick,
   return (
     <div>
       <a onClick={onPreviousTrackClick} >prev</a>
+      {' '}
       <a onClick={onNextTrackClick}>next</a>
-      {currentTrackIndex}
     </div>
   );
 }
