@@ -6,7 +6,7 @@ const propTypes = {
 
 export default function Audio({ currentTrack }) {
   if (!currentTrack) return <div>no zik</div>;
-
+console.log("url: ", currentTrack.url);
   return (
     <div>
       <h2>{currentTrack.title}</h2>

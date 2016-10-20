@@ -1,3 +1,5 @@
+import { normalize } from 'normalizr';
+import * as schema from './schema';
 import music from '../utils/music';
 import youtube from '../utils/youtube';
 
@@ -14,6 +16,27 @@ export const receivePlaylist = (playlist) => {
   }
 }
 
+export const requestPlaylists = () => {
+  return {
+    type: 'REQUEST_PLAYLISTS',
+  }
+}
+
+export const receivePlaylists = (response) => {
+  return {
+    type: 'RECEIVE_PLAYLISTs',
+    response: (response, schema.arrayOfPlaylists),
+  }
+}
+
+export const requestTracks = () => ({
+  type: 'REQUEST_TRACKS'
+})
+
+export const receiveTracks = (response) => ({
+  type: 'RECEIVE_TRACKS',
+  response: normalize(response, schema.arrayOfTracks)
+})
 
 export const requestSearchResult = () => {
   return {
@@ -53,7 +76,20 @@ export function fetchPlaylist() {
         const { title, url, id } = playlist[0];
         dispatch(setTrackId(id));
         dispatch(setTrack(title, url));
+        console.log(playlist);
+        dispatch(receiveTracks(playlist)); // to delete at some point;
         return dispatch(receivePlaylist(playlist));
+      });
+  };
+}
+
+export function fetchPlaylists() {
+  return function(dispatch) {
+    dispatch(requestPlaylists());
+    return music.fetchPlaylists()
+      .then(playlists => {
+        console.log(playlists);
+        return dispatch(receivePlaylists(playlists));
       });
   };
 }

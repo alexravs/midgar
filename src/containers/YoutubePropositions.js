@@ -17,7 +17,7 @@ function mapStateToProps(state) {
   };
 }
 
-export class Youtube extends React.Component {
+export class YoutubePropositions extends React.Component {
   constructor(props) {
     super(props);
     this.handlePropositionClick = this.handlePropositionClick.bind(this);
@@ -27,6 +27,7 @@ export class Youtube extends React.Component {
     const { dispatch } = this.props;
     // dispatch(fetchYoutubeMp3(videoId, title));
     dispatch(setTrack(title, ('http://www.youtubeinmp3.com/fetch/?video=https://www.youtube.com/watch?v=' + videoId)));
+    // dispatch(setTrack(title, ('http://www.localhost:3030/converted_mp3/' + videoId)));
 
   }
 
@@ -54,4 +55,4 @@ export class Youtube extends React.Component {
 
 export default connect(
   mapStateToProps
-)(Youtube);
+)(YoutubePropositions);
