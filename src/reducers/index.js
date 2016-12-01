@@ -1,16 +1,13 @@
 import { combineReducers } from 'redux'
-import playlist from './playlist'
-import currentTrackIndex from './currentTrackIndex';
 import searchResult from './searchResult';
-import currentTrack from './currentTrack';
-import traks from './traks';
+import geojsons from './geojsons';
+import map from './map';
 
-const gooMusicApp = combineReducers({
-  playlist,
-  currentTrackIndex,
-  currentTrack,
+
+const midgarApp = combineReducers({
   searchResult,
-  traks,
+  geojsons,
+  map,
 })
 
-export default gooMusicApp
+export default midgarApp;

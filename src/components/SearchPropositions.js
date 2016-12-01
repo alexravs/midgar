@@ -9,18 +9,18 @@ function renderProposition(proposition) {
 
 export default function SearchPropositions({ propositions, onPropositionClick }) {
   return (
-    <ul>
+    <div>
       {propositions.map((proposition) =>
-        <Proposition
-          key={`proposition-${proposition.id.videoId}`}
-          onClick={() => {
-            onPropositionClick(
-              proposition.id.videoId,
-              proposition.snippet.title);
-          }}
-          title={proposition.snippet.title}
-        />
+        <div className='col-xs-12'>
+          <Proposition
+            onClick={() => {
+              const code = proposition.alpha3Code.toLowerCase();
+              onPropositionClick(code);
+            }}
+            {...proposition}
+          />
+        </div>
       )}
-    </ul>
+    </div>
   );
 }

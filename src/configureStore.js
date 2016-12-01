@@ -1,13 +1,13 @@
 import { createStore, applyMiddleware } from 'redux'
 import thunkMiddleware from 'redux-thunk';
 import createLogger from 'redux-logger';
-import gooMusicApp from './reducers/index';
+import midgarApp from './reducers/index';
 
 const configureStore = () => {
   const loggerMiddleware = createLogger();
 
   let store = createStore(
-    gooMusicApp,
+    midgarApp,
     applyMiddleware(
       thunkMiddleware,
       loggerMiddleware
